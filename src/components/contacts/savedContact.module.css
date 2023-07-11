@@ -1,0 +1,38 @@
+.item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.item:not(:last-child) {
+  margin-bottom: 20px;
+}
+
+.icon {
+  padding-right: 18px;
+  color: var(--bc-btn);
+  /* width: 35px; */
+}
+
+.itemText {
+  font-size: 22px;
+  color: var(--color-title);
+
+  display: flex;
+  align-items: center;
+  /* margin-bottom: 15px; */
+}
+
+.btn {
+  color: var(--color-label);
+  font-size: 14px;
+  /* display: flex;
+  align-items: center; */
+  padding: 5px 8px;
+  outline: none;
+  border-color: transparent;
+  border-radius: 10px;
+  &:hover {
+    color: var(--color-btn);
+    background-color: var(--bc-btn-hover);
+  }
+}

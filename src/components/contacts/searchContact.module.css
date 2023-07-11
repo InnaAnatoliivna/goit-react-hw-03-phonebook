@@ -1,0 +1,18 @@
+.wrapper {
+  padding-bottom: 20px;
+}
+
+.title {
+  color: var(--color-label);
+  font-size: 25px;
+
+  margin-bottom: 20px;
+}
+
+.input {
+  color: var(--color-input);
+  font-size: 16px;
+
+  max-width: 260px;
+  padding: 10px;
+}
