@@ -1,4 +1,4 @@
-import css from 'components/contacts/searchContact.module.css'
+import css from 'components/SearchContact/searchContact.module.css'
 
 const SearchContact = ({ handleSearchInput, searchTitle, arrayContacts }) => {
     return (

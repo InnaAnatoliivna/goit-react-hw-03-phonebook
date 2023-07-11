@@ -1,4 +1,4 @@
-import SavedContact from 'components/contacts/savedContact'
+import SavedContact from 'components/savedContact/savedContact'
 import css from 'components/contacts/contacts.module.css'
 
 const Contacts = ({ arrayContacts, onDeleteContact }) => {

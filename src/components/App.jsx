@@ -3,8 +3,9 @@ import { getRandomId } from 'components/random-id'
 import Head from 'components/title/head';
 import Section from 'components/title/section-title';
 import Contacts from 'components/contacts/contacts';
-import SearchContact from 'components/contacts/SearchContact';
-import AddContactForm from 'components/phonebook/add-contact';
+import SearchContact from 'components/SearchContact/SearchContact';
+import AddContactForm from 'components/add-contact/add-contact';
+import { saveToLocalStorage, loadContacts } from 'components/local-storage/local-storage';
 
 export class App extends Component {
   state = {
@@ -12,22 +13,29 @@ export class App extends Component {
     filter: ''
   }
 
+  componentDidMount() {
+    const getSaveContacts = loadContacts('savedContacts');
+    getSaveContacts && this.setState({ contacts: getSaveContacts });
+  }
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.contacts !== this.state.contacts) {
+      saveToLocalStorage('savedContacts', this.state.contacts);
+    }
+  }
+
   addContact = (name, number) => {
     const { contacts } = this.state;
     const idContact = getRandomId();
-    const dataFields = {}
-    const isContact = contacts.find(contact => contact.name === name);
+    const dataFields = { name: name, number: number, id: idContact }
+    const isContact = contacts.find(contact => contact.name === dataFields.name);
     if (!isContact) {
-      dataFields.name = name;
-      dataFields.number = number;
-      dataFields.id = idContact;
       this.setState(prevState => ({
         contacts: [...prevState.contacts, dataFields]
       }));
     } else {
-      alert(`${name} is already in contacts`)
+      alert(`${name} is already in contacts`);
     }
-  };
+  }
 
   onDeleteContact = (id) => {
     this.setState(prevState => ({
@@ -41,7 +49,6 @@ export class App extends Component {
   }
 
   render() {
-
     const { contacts, filter } = this.state;
     const filteredContacts = contacts
       .filter(contact => contact.name.toLowerCase()
@@ -50,9 +57,7 @@ export class App extends Component {
     return (
       <div className='container'>
         <Head headTitle='Phonebook' />
-
         <AddContactForm addContact={this.addContact} />
-
         <Section title='Contacts'>
           <SearchContact
             handleSearchInput={this.onFilteringInput}
@@ -64,7 +69,6 @@ export class App extends Component {
             onDeleteContact={this.onDeleteContact}
           />
         </Section>
-
       </div>
     );
   };
