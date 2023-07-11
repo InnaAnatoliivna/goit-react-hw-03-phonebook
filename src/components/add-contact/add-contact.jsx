@@ -1,10 +1,11 @@
 import Phonebook from 'components/phonebook/phonebook';
 import { Component } from 'react';
-import { nanoid } from 'nanoid';
+import { getRandomId } from 'components/random-id'
+
 
 class AddContactForm extends Component {
-    nameInputId = nanoid();
-    numerInputId = nanoid();
+    nameInputId = getRandomId();
+    numerInputId = getRandomId();
 
     state = {
         name: '',

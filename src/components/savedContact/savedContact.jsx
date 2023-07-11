@@ -1,5 +1,5 @@
 import { IoMdContact } from 'react-icons/io';
-import css from 'components/contacts/savedContact.module.css'
+import css from 'components/savedContact/savedContact.module.css'
 
 const SavedContact = ({ contact }) => {
     return (
