@@ -13,13 +13,15 @@ export class App extends Component {
     filter: ''
   }
 
+  KEYlocalStorage = 'savedContacts';
+
   componentDidMount() {
-    const getSaveContacts = loadContacts('savedContacts');
+    const getSaveContacts = loadContacts(this.KEYlocalStorage);
     getSaveContacts && this.setState({ contacts: getSaveContacts });
   }
   componentDidUpdate(prevProps, prevState) {
     if (prevState.contacts !== this.state.contacts) {
-      saveToLocalStorage('savedContacts', this.state.contacts);
+      saveToLocalStorage(this.KEYlocalStorage, this.state.contacts);
     }
   }
 
